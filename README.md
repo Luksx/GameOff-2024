@@ -1,4 +1,4 @@
-#GameOff-2024
+# GameOff-2024
 
 [GameOff](https://itch.io/jam/game-off-2024)
 
