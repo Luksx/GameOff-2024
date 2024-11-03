@@ -11,5 +11,14 @@ config_version=5
 [application]
 
 config/name="gameoff2024"
+run/main_scene="res://Scenes/locations/worldtest.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
