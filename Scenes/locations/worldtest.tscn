@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dno4c8nflih2c"]
+[gd_scene load_steps=4 format=3 uid="uid://dno4c8nflih2c"]
 
 [ext_resource type="PackedScene" uid="uid://cak04eh3nhww6" path="res://Scenes/entities/player.tscn" id="1_qyhmr"]
 [ext_resource type="PackedScene" uid="uid://dkgcrwxsqgxgy" path="res://Scenes/ui/main_camera.tscn" id="2_hjbcr"]
+[ext_resource type="PackedScene" uid="uid://iconi5qs85mw" path="res://Scenes/entities/dummy.tscn" id="3_ovoyl"]
 
 [node name="worldtest" type="Node2D"]
 
@@ -9,3 +10,6 @@
 position = Vector2(530, 270)
 
 [node name="Camera2D" parent="player" instance=ExtResource("2_hjbcr")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_ovoyl")]
+position = Vector2(890, 85)
