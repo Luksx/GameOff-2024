@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://iconi5qs85mw"]
+[gd_scene load_steps=5 format=3 uid="uid://iconi5qs85mw"]
 
 [ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="1_4u66e"]
 [ext_resource type="Script" path="res://Scripts/enemy/dummy.gd" id="1_6csfq"]
+[ext_resource type="Script" path="res://Scripts/enemy/boss1/attackmanager.gd" id="3_a7a22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqp5o"]
 size = Vector2(76, 128)
@@ -26,3 +27,11 @@ offset_top = -108.0
 offset_right = 35.0
 offset_bottom = -85.0
 text = "1"
+
+[node name="attacktimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="attackmanag" type="Node2D" parent="."]
+script = ExtResource("3_a7a22")
+
+[connection signal="timeout" from="attacktimer" to="attackmanag" method="_on_attacktimer_timeout"]
