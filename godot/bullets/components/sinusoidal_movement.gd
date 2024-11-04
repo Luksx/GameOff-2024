@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 	var y_velocity = sin(angle * frequency) * amplitude
 
 	bullet.velocity = Vector2(bullet.speed, y_velocity)
+	var a = 10
 
 	if angle >= 360:
 		angle = 0

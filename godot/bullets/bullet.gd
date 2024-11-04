@@ -6,7 +6,7 @@ signal collided(bullet: Bullet, collision: KinematicCollision2D, previous_veloci
 signal spawned(bullet: Bullet)
 
 
-@export var speed: float = 10
+@export var speed: float = 0
 
 
 var direction: Vector2:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_la5nb"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_a865d"]
-[ext_resource type="Script" path="res://bullets/components/sinusoidal_movement.gd" id="3_wr181"]
+[ext_resource type="Script" path="res://bullets/components/bounce_on_collision.gd" id="3_twgna"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwagn"]
 
@@ -26,10 +26,8 @@ script = ExtResource("2_a865d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_l84oo")
 
-[node name="SinusoidalMovement" type="Node" parent="."]
-script = ExtResource("3_wr181")
-oscillation_speed = 3.0
-amplitude = 1000.0
+[node name="BounceOnCollision" type="Node" parent="."]
+script = ExtResource("3_twgna")
+bounce_count = 5
 
-[connection signal="ready" from="." to="SinusoidalMovement" method="_on_ready"]
-[connection signal="spawned" from="." to="SinusoidalMovement" method="_on_bullet_spawned"]
+[connection signal="collided" from="." to="BounceOnCollision" method="_on_bullet_collided"]
