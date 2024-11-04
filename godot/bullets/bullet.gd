@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 signal collided(bullet: Bullet, collision: KinematicCollision2D, previous_velocity: Vector2)
+signal spawned(bullet: Bullet)
 
 
 @export var speed: float = 10
@@ -23,6 +24,7 @@ var direction: Vector2:
 
 func _ready() -> void:
 	velocity = speed * direction
+	spawned.emit(self)
 
 
 func _physics_process(_delta: float) -> void:

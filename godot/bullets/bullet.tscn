@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://r62fresnkylj"]
+[gd_scene load_steps=6 format=3 uid="uid://r62fresnkylj"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_la5nb"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_a865d"]
+[ext_resource type="Script" path="res://bullets/components/sinusoidal_movement.gd" id="3_wr181"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwagn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l84oo"]
 
 [node name="Bullet" type="CharacterBody2D"]
+position = Vector2(0, -1)
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_la5nb")
-speed = 1000.0
+speed = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rwagn")
@@ -23,3 +25,11 @@ script = ExtResource("2_a865d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_l84oo")
+
+[node name="SinusoidalMovement" type="Node" parent="."]
+script = ExtResource("3_wr181")
+oscillation_speed = 3.0
+amplitude = 1000.0
+
+[connection signal="ready" from="." to="SinusoidalMovement" method="_on_ready"]
+[connection signal="spawned" from="." to="SinusoidalMovement" method="_on_bullet_spawned"]
