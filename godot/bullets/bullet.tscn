@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://r62fresnkylj"]
+[gd_scene load_steps=5 format=3 uid="uid://r62fresnkylj"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_la5nb"]
-[ext_resource type="Script" path="res://bullets/components/free_on_collision.gd" id="2_fj1k2"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_a865d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwagn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l84oo"]
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 8
@@ -16,7 +18,8 @@ shape = SubResource("CircleShape2D_rwagn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="FreeOnCollision" type="Node" parent="."]
-script = ExtResource("2_fj1k2")
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_a865d")
 
-[connection signal="collided" from="." to="FreeOnCollision" method="_on_bullet_collided"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_l84oo")
