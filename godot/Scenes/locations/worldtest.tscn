@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dno4c8nflih2c"]
+[gd_scene load_steps=6 format=3 uid="uid://dno4c8nflih2c"]
 
 [ext_resource type="PackedScene" uid="uid://cak04eh3nhww6" path="res://Scenes/entities/player.tscn" id="1_qyhmr"]
 [ext_resource type="PackedScene" uid="uid://dkgcrwxsqgxgy" path="res://Scenes/ui/main_camera.tscn" id="2_hjbcr"]
 [ext_resource type="PackedScene" uid="uid://iconi5qs85mw" path="res://Scenes/entities/dummy.tscn" id="3_ovoyl"]
+[ext_resource type="PackedScene" uid="uid://r62fresnkylj" path="res://bullets/bullet.tscn" id="4_d3gmg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbho4"]
+size = Vector2(20, 616)
 
 [node name="worldtest" type="Node2D"]
 
@@ -13,3 +17,44 @@ position = Vector2(530, 270)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_ovoyl")]
 position = Vector2(890, 85)
+
+[node name="Bullet" parent="." instance=ExtResource("4_d3gmg")]
+position = Vector2(349, 275)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 298)
+shape = SubResource("RectangleShape2D_lbho4")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(285, -76)
+rotation = 0.588889
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, 298)
+shape = SubResource("RectangleShape2D_lbho4")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(621, 214)
+rotation = 0.588889
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, 298)
+shape = SubResource("RectangleShape2D_lbho4")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(166, -50.0001)
+rotation = -1.09397
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0, 298)
+shape = SubResource("RectangleShape2D_lbho4")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(166, -50.0001)
+rotation = -1.09397
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(-513.557, 263.044)
+shape = SubResource("RectangleShape2D_lbho4")

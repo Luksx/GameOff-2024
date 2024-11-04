@@ -1,46 +1,37 @@
 class_name Bullet
-extends RefCounted
+extends CharacterBody2D
 
 
-var position: Vector2
-var velocity: Vector2
-var acceleration: Vector2
-var bullet_type: BulletType
-
-var body_rid: RID # For physics interactions
-var shape_rid: RID
-
-var rendering_rid: RID # for rendering
+signal collided(bullet: Bullet, collision: KinematicCollision2D, previous_velocity: Vector2)
 
 
-func ready() -> void:
-	for extension: BulletExtension in bullet_type.bullet_extensions:
-		extension.on_ready(self)
+@export var speed: float = 10
 
 
-func hit(other: Node2D) -> void:
-	for extension: BulletExtension in bullet_type.bullet_extensions:
-		extension.on_hit(self, other)
+var direction: Vector2:
+	get():
+		if velocity == Vector2.ZERO:
+			return Vector2.RIGHT
+		return velocity.normalized()
+	set(value):
+		var length: float = velocity.length()
+		if length == 0:
+			velocity = value
+		else:
+			velocity = length * value
 
 
-func on_collide(other: Node2D) -> void:
-	for extension: BulletExtension in bullet_type.bullet_extensions:
-		extension.on_hit(self, other)
+func _ready() -> void:
+	velocity = speed * direction
 
 
-func update(delta: float) -> void:
-	for extension: BulletExtension in bullet_type.bullet_extensions:
-		extension.on_update(self, delta)
+func _physics_process(_delta: float) -> void:
+	var previous_velocity: Vector2 = velocity
+	move_and_slide()
 
-
-func physics_update(delta: float) -> void:
-	position += velocity * delta
-	velocity += acceleration * delta
-
-	for extension: BulletExtension in bullet_type.bullet_extensions:
-		extension.on_physics_update(self, delta)
+	if get_slide_collision_count() > 0:
+		collided.emit(self, get_last_slide_collision(), previous_velocity)
 
 
 func destroy() -> void:
-	for extension: BulletExtension in bullet_type.bullet_extensions:
-		extension.on_destroy(self)
+	queue_free()

@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="BulletType" load_steps=3 format=3 uid="uid://u8ecpq0q6n72"]
-
-[ext_resource type="Script" path="res://bullets/bullet_extension.gd" id="1_vlm1y"]
-[ext_resource type="Script" path="res://bullets/bullet_type.gd" id="2_bds1e"]
-
-[resource]
-script = ExtResource("2_bds1e")
-bullet_extensions = Array[ExtResource("1_vlm1y")]([])
