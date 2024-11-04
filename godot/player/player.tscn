@@ -48,6 +48,8 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_ctsd1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
