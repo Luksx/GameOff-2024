@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://7s13w2ss5ew3"]
-
-[ext_resource type="Script" path="res://bullets/bullet_type.gd" id="1_8g1co"]
-[ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="2_j7ysi"]
-
-[node name="TestBulletType" type="Node2D"]
-script = ExtResource("1_8g1co")
-texture = ExtResource("2_j7ysi")
