@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk3fikveqao6d"]
+
+[ext_resource type="PackedScene" uid="uid://bgswh8neglii5" path="res://bosses/boss.tscn" id="1_pskqw"]
+[ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="2_3wnbm"]
+
+[node name="Boss" instance=ExtResource("1_pskqw")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.793551, 0.0954925, 0.216617, 1)
+texture = ExtResource("2_3wnbm")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1.90735e-06)

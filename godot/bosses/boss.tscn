@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgswh8neglii5"]
+
+[ext_resource type="Script" path="res://bosses/boss.gd" id="1_m7qh8"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="2_woch3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnfcw"]
+size = Vector2(128.514, 125.989)
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_m7qh8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.996004, 1.01596)
+shape = SubResource("RectangleShape2D_qnfcw")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_woch3")

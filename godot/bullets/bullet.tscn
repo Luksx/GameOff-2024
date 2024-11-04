@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://r62fresnkylj"]
+[gd_scene load_steps=5 format=3 uid="uid://r62fresnkylj"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_la5nb"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_a865d"]
-[ext_resource type="Script" path="res://bullets/components/bounce_on_collision.gd" id="3_twgna"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rwagn"]
 
@@ -25,9 +24,3 @@ script = ExtResource("2_a865d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_l84oo")
-
-[node name="BounceOnCollision" type="Node" parent="."]
-script = ExtResource("3_twgna")
-bounce_count = 5
-
-[connection signal="collided" from="." to="BounceOnCollision" method="_on_bullet_collided"]

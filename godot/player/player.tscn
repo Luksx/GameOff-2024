@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://cak04eh3nhww6"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_ctsd1"]
+[ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="1_f43qc"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_vtdwh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tvk0"]
+size = Vector2(130, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbppv"]
+size = Vector2(56, 130)
+
+[sub_resource type="Animation" id="Animation_vgkv0"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_as45g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lilda"]
+_data = {
+"RESET": SubResource("Animation_as45g"),
+"swing": SubResource("Animation_vgkv0")
+}
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ctsd1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f43qc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6tvk0")
+
+[node name="SwordHitbox" type="Area2D" parent="."]
+script = ExtResource("3_vtdwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
+position = Vector2(100, 1)
+shape = SubResource("RectangleShape2D_pbppv")
+disabled = true
+
+[node name="SwordAnimator" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SwordHitbox")
+libraries = {
+"": SubResource("AnimationLibrary_lilda")
+}
+
+[node name="SwordCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
