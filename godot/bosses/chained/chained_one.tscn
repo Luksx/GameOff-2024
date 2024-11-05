@@ -18,9 +18,6 @@ texture = ExtResource("2_3wnbm")
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 1.90735e-06)
 
-[node name="HealthComponent" parent="." index="2"]
-unique_name_in_owner = false
-
 [node name="HurtboxComponent" type="Area2D" parent="." index="3"]
 collision_layer = 7
 collision_mask = 7
@@ -30,7 +27,7 @@ script = ExtResource("3_iilhv")
 shape = SubResource("RectangleShape2D_hj8f1")
 
 [node name="ChainedOneAi" parent="." index="4" node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("4_agknw")]
-blackboard = NodePath("@Node@25174")
+blackboard = NodePath("@Node@29006")
 actor = NodePath("..")
 
 [connection signal="hurt" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_hurt"]

@@ -1,7 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed: int = 25000
+
+@export var speed: int = 1000
+@export var dash_speed: int = 5000
 
 
 @onready var sword_hitbox: HitboxComponent = $SwordHitbox
@@ -21,8 +23,10 @@ func _ready():
 func _process(delta):
 	var input : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if input != Vector2(0,0):
-		velocity = input * speed * delta
-#		print(velocity)
+		var target_vel: Vector2 = input * speed
+
+		if velocity.length() <= target_vel.length():
+			velocity = input * speed 
 	else:
 		velocity = Vector2(0, 0)
 	move_and_slide()
@@ -38,10 +42,7 @@ func _swing_sword() -> void:
 	if on_cooldown:
 		return
 
-	var direction: Vector2 = velocity.normalized()
-
-	if direction == Vector2.ZERO:
-		direction = Vector2.RIGHT
+	var direction: Vector2 = get_direction()
 
 	sword_hitbox.rotation = direction.angle()
 	sword_animator.play("swing")
@@ -55,14 +56,25 @@ func _on_sword_cooldown_timeout() -> void:
 
 func dash():
 	if can_dash:
-		dash_cooldown.start(0.2)
+		dash_cooldown.start()
 		hurtbox.monitoring = false
 		can_dash = false
-		speed = 100000
+		
+		var direction: Vector2 = get_direction()
+		velocity = direction * dash_speed
 
 
-func _on_dashcooldown_timeout() -> void:
+func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
 	hurtbox.monitoring = true
-	speed = 25000
 	velocity = Vector2(0,0)
+
+
+func get_direction() -> Vector2:
+	var direction: Vector2 = velocity.normalized()
+
+	if direction == Vector2.ZERO:
+		direction = Vector2.RIGHT
+	
+	return direction
+	

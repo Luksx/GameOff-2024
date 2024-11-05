@@ -16,5 +16,4 @@ scale = Vector2(0.996004, 1.01596)
 shape = SubResource("RectangleShape2D_qnfcw")
 
 [node name="HealthComponent" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("2_woch3")
