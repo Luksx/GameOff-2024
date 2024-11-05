@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dno4c8nflih2c"]
+[gd_scene load_steps=6 format=3 uid="uid://dno4c8nflih2c"]
 
 [ext_resource type="PackedScene" uid="uid://cak04eh3nhww6" path="res://player/player.tscn" id="1_qyhmr"]
 [ext_resource type="PackedScene" uid="uid://dkgcrwxsqgxgy" path="res://Scenes/ui/main_camera.tscn" id="2_hjbcr"]
 [ext_resource type="PackedScene" uid="uid://iconi5qs85mw" path="res://Scenes/entities/dummy.tscn" id="3_ovoyl"]
 [ext_resource type="Script" path="res://bosses/boss_manager.gd" id="4_5h203"]
+[ext_resource type="PackedScene" uid="uid://bk3fikveqao6d" path="res://bosses/chained/chained_one.tscn" id="5_tt4js"]
 
 [node name="worldtest" type="Node2D"]
 
@@ -17,3 +18,6 @@ position = Vector2(890, 85)
 
 [node name="BossManager" type="Node" parent="."]
 script = ExtResource("4_5h203")
+
+[node name="ChainedOne" parent="." instance=ExtResource("5_tt4js")]
+position = Vector2(753, 381)

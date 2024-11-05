@@ -7,5 +7,5 @@ signal hurt(hitbox: HitboxComponent)
 
 func _ready() -> void:
 	area_entered.connect(func(other: Area2D):
-		if other is HurtboxComponent:
+		if other is HitboxComponent:
 			hurt.emit(other))
