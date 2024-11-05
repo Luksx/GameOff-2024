@@ -108,18 +108,18 @@ libraries = {
 [node name="SwordCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="dashcooldown" type="Timer" parent="."]
+[node name="DashCooldown" type="Timer" parent="."]
 
-[node name="hurtBox" type="Area2D" parent="."]
+[node name="HurtBoxComponent" type="Area2D" parent="."]
 script = ExtResource("4_alt67")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_uk7wb")
 debug_color = Color(0.763823, 0.18617, 0.987936, 0.42)
 
-[node name="healthcompionent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("5_xhbga")
 
 [connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
-[connection signal="timeout" from="dashcooldown" to="." method="_on_dashcooldown_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dashcooldown_timeout"]
