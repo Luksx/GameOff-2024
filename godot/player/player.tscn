@@ -76,4 +76,7 @@ libraries = {
 [node name="SwordCooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="dashcooldown" type="Timer" parent="."]
+
 [connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
+[connection signal="timeout" from="dashcooldown" to="." method="_on_dashcooldown_timeout"]
