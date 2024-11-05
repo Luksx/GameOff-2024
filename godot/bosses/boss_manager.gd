@@ -14,10 +14,6 @@ var cumulative_health: float:
 		return total
 
 
-func _process(delta: float) -> void:
-	print_debug(cumulative_health)
-
-
 func _enter_tree() -> void:
 	instance = self
 

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_ctsd1"]
 [ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="1_f43qc"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_vtdwh"]
-[ext_resource type="Script" path="res://player/hurt_box.gd" id="4_alt67"]
-[ext_resource type="Script" path="res://player/healthcompionent.gd" id="5_xhbga"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_clit4"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="5_8bvbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tvk0"]
 size = Vector2(130, 129)
@@ -110,16 +110,16 @@ one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="."]
 
-[node name="HurtBoxComponent" type="Area2D" parent="."]
-script = ExtResource("4_alt67")
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("4_clit4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_uk7wb")
 debug_color = Color(0.763823, 0.18617, 0.987936, 0.42)
 
-[node name="HealthComponent" type="Node2D" parent="."]
-script = ExtResource("5_xhbga")
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_8bvbr")
 
 [connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dashcooldown_timeout"]
