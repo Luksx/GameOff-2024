@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cak04eh3nhww6"]
+[gd_scene load_steps=12 format=3 uid="uid://cak04eh3nhww6"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ctsd1"]
 [ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="1_f43qc"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_vtdwh"]
+[ext_resource type="Script" path="res://player/hurt_box.gd" id="4_alt67"]
+[ext_resource type="Script" path="res://player/healthcompionent.gd" id="5_xhbga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tvk0"]
 size = Vector2(130, 129)
@@ -46,6 +48,9 @@ _data = {
 "swing": SubResource("Animation_vgkv0")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk7wb"]
+size = Vector2(98, 88)
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
@@ -77,6 +82,17 @@ libraries = {
 one_shot = true
 
 [node name="dashcooldown" type="Timer" parent="."]
+
+[node name="hurtBox" type="Area2D" parent="."]
+script = ExtResource("4_alt67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_uk7wb")
+debug_color = Color(0.763823, 0.18617, 0.987936, 0.42)
+
+[node name="healthcompionent" type="Node2D" parent="."]
+script = ExtResource("5_xhbga")
 
 [connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
 [connection signal="timeout" from="dashcooldown" to="." method="_on_dashcooldown_timeout"]

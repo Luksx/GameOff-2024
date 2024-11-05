@@ -51,11 +51,11 @@ func _on_sword_cooldown_timeout() -> void:
 func dash():
 	if can_dash:
 		dash_cooldown.start(0.2)
-		$CollisionShape2D.disabled = true
+		$hurtBox/CollisionShape2D.disabled = true
 		can_dash = false
 		speed = 100000
 func _on_dashcooldown_timeout() -> void:
 	can_dash = true
-	$CollisionShape2D.disabled = false
+	$hurtBox/CollisionShape2D.disabled = false
 	speed = 25000
 	velocity = Vector2(0,0)
