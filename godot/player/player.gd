@@ -17,16 +17,13 @@ var on_cooldown := false
 var can_dash := false
 
 
-func _ready():
+func _ready() -> void:
 	dash_cooldown.start(2)
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	var input : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if input != Vector2(0,0):
-		var target_vel: Vector2 = input * speed
-
-		if velocity.length() <= target_vel.length():
-			velocity = input * speed 
+		velocity = input * speed 
 	else:
 		velocity = Vector2(0, 0)
 	move_and_slide()

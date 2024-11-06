@@ -9,7 +9,7 @@ const LINK: PackedScene = preload("res://bosses/attacks/chain_swing/chain_link.t
 
 
 func spawn_links() -> void:
-	pass
+	pass	
 
 
 func swing(speed: int) -> void:
