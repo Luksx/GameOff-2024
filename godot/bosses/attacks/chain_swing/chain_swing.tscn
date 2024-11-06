@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2b8qmcs835hx"]
+
+[ext_resource type="Script" path="res://bosses/attacks/chain_swing/chain_swing.gd" id="1_gp0sr"]
+
+[node name="ChainSwing" type="Node2D"]
+script = ExtResource("1_gp0sr")

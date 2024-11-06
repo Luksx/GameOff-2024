@@ -27,7 +27,7 @@ script = ExtResource("3_iilhv")
 shape = SubResource("RectangleShape2D_hj8f1")
 
 [node name="ChainedOneAi" parent="." index="4" node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("4_agknw")]
-blackboard = NodePath("@Node@29006")
+blackboard = NodePath("@Node@17268")
 actor = NodePath("..")
 
 [connection signal="hurt" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_hurt"]

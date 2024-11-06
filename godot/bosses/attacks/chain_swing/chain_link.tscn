@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ybndcebjnfrk"]
+
+[ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="1_aouhy"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_7p4ka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55g1n"]
+size = Vector2(70, 128)
+
+[node name="ChainLink" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.55, 1)
+texture = ExtResource("1_aouhy")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_7p4ka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_55g1n")

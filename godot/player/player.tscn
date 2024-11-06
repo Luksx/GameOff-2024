@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://cak04eh3nhww6"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ctsd1"]
-[ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="1_f43qc"]
+[ext_resource type="Texture2D" uid="uid://y10s0lge3rag" path="res://player/textures/player.png" id="2_nr7b3"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_vtdwh"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="4_clit4"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="5_8bvbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6tvk0"]
-size = Vector2(130, 129)
+size = Vector2(102, 292)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbppv"]
-size = Vector2(56, 130)
+size = Vector2(97, 287)
 
 [sub_resource type="Animation" id="Animation_as45g"]
 length = 0.001
@@ -73,7 +73,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk7wb"]
-size = Vector2(98, 88)
+size = Vector2(102, 292)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -82,10 +82,12 @@ collision_mask = 9
 script = ExtResource("1_ctsd1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_f43qc")
+texture_filter = 4
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_nr7b3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_6tvk0")
 
 [node name="SwordHitbox" type="Area2D" parent="."]
@@ -95,7 +97,7 @@ monitorable = false
 script = ExtResource("3_vtdwh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
-position = Vector2(100, 1)
+position = Vector2(140, 0)
 shape = SubResource("RectangleShape2D_pbppv")
 disabled = true
 
@@ -109,17 +111,22 @@ libraries = {
 one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 script = ExtResource("4_clit4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(1, 0)
+position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_uk7wb")
 debug_color = Color(0.763823, 0.18617, 0.987936, 0.42)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_8bvbr")
+
+[node name="DashDuration" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
