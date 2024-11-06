@@ -7,7 +7,7 @@
 
 [node name="ChainedOneAi" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_artx8")
-blackboard = NodePath("@Node@22723")
+blackboard = NodePath("@Node@17276")
 actor = NodePath("")
 
 [node name="SelectorComposite" type="Node" parent="."]
