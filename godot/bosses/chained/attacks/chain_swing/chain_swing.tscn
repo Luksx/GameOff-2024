@@ -3,5 +3,4 @@
 [ext_resource type="Script" path="res://bosses/chained/attacks/chain_swing/chain_swing.gd" id="1_8hoyh"]
 
 [node name="ChainSwing" type="Node2D"]
-position = Vector2(823, 463)
 script = ExtResource("1_8hoyh")

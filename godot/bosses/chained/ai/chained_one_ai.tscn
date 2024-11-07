@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk2qqx1ppq2lt"]
+[gd_scene load_steps=8 format=3 uid="uid://dk2qqx1ppq2lt"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_artx8"]
 [ext_resource type="Script" path="res://bosses/generic/conditionals/less_than_half_condition.gd" id="2_0xpuf"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_5vi03"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_c26xr"]
+[ext_resource type="Script" path="res://bosses/chained/ai/actions/chain_swing_action.gd" id="5_otj16"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_random.gd" id="6_erihd"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="6_qdugs"]
 
 [node name="ChainedOneAi" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_artx8")
 blackboard = NodePath("@Node@17270")
-actor = NodePath("")
+actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="."]
 script = ExtResource("2_5vi03")
@@ -21,3 +24,13 @@ script = ExtResource("4_c26xr")
 
 [node name="FirstPhase" type="Node" parent="SelectorComposite"]
 script = ExtResource("4_c26xr")
+
+[node name="DelayDecorator" type="Node" parent="SelectorComposite/FirstPhase"]
+script = ExtResource("6_qdugs")
+wait_time = 5.0
+
+[node name="SelectorRandomComposite" type="Node" parent="SelectorComposite/FirstPhase/DelayDecorator"]
+script = ExtResource("6_erihd")
+
+[node name="ChainSwingAction" type="Node" parent="SelectorComposite/FirstPhase/DelayDecorator/SelectorRandomComposite"]
+script = ExtResource("5_otj16")

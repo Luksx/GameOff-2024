@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk3fikveqao6d"]
+[gd_scene load_steps=7 format=3 uid="uid://bk3fikveqao6d"]
 
 [ext_resource type="PackedScene" uid="uid://bgswh8neglii5" path="res://bosses/boss.tscn" id="1_pskqw"]
 [ext_resource type="Texture2D" uid="uid://b8in14xftx34b" path="res://icon.svg" id="2_3wnbm"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="3_iilhv"]
 [ext_resource type="PackedScene" uid="uid://dk2qqx1ppq2lt" path="res://bosses/chained/ai/chained_one_ai.tscn" id="4_agknw"]
+[ext_resource type="PackedScene" uid="uid://d2b8qmcs835hx" path="res://bosses/chained/attacks/chain_swing/chain_swing.tscn" id="5_7b474"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hj8f1"]
 size = Vector2(128, 128)
@@ -19,15 +20,16 @@ texture = ExtResource("2_3wnbm")
 position = Vector2(0, 1.90735e-06)
 
 [node name="HurtboxComponent" type="Area2D" parent="." index="3"]
-collision_layer = 7
-collision_mask = 7
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("3_iilhv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 shape = SubResource("RectangleShape2D_hj8f1")
 
-[node name="ChainedOneAi" parent="." index="4" node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("4_agknw")]
+[node name="ChainSwing" parent="." index="4" instance=ExtResource("5_7b474")]
+
+[node name="ChainedOneAi" parent="." index="5" node_paths=PackedStringArray("blackboard") instance=ExtResource("4_agknw")]
 blackboard = NodePath("@Node@17268")
-actor = NodePath("..")
 
 [connection signal="hurt" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_hurt"]
