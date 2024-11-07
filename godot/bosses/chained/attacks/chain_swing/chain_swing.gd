@@ -18,15 +18,16 @@ func _spawn_links(link_count: int) -> void:
 		link.global_position = target_pos
 		add_child(link)
 
+	rotation = randf_range(0, 2 * PI)
+
 
 func swing(swing_duration: float, link_count: int, spin_count: int) -> void:
 	_spawn_links(link_count)
 
 	var tween := get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(self, "rotation", 2 * PI * spin_count, swing_duration * spin_count)
+	tween.tween_property(self, "rotation", rotation + 2 * PI * spin_count, swing_duration * spin_count)
 
 	await tween.finished
-	rotation = 0
 
 	for child in get_children():
 		child.queue_free()
@@ -39,10 +40,8 @@ func swing_alternating(swing_duration: float, link_count: int, spin_count: int) 
 	for i in range(spin_count):
 		dir *= -1
 		var tween := get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-		tween.tween_property(self, "rotation", dir * 2 * PI, swing_duration * spin_count)
+		tween.tween_property(self, "rotation", rotation + dir * 2 * PI, swing_duration * spin_count)
 		await tween.finished
-
-	rotation = 0
 
 	for child in get_children():
 		child.queue_free()

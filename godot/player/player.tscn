@@ -113,9 +113,12 @@ libraries = {
 one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="."]
+wait_time = 0.25
 one_shot = true
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
 script = ExtResource("4_clit4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
@@ -132,3 +135,5 @@ one_shot = true
 
 [connection signal="timeout" from="SwordCooldown" to="." method="_on_sword_cooldown_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="hurt" from="HurtboxComponent" to="." method="_on_hurtbox_component_hurt"]
+[connection signal="hurt" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_hurt"]

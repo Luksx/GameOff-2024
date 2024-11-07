@@ -78,3 +78,7 @@ func get_direction() -> Vector2:
 		direction = Vector2.RIGHT
 
 	return direction
+
+
+func _on_hurtbox_component_hurt(hitbox: HitboxComponent) -> void:
+	printerr("guh")
