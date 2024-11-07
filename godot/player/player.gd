@@ -24,7 +24,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if dash_duration.is_stopped():
-		print_debug("g")
 		var input : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		if input != Vector2.ZERO:
 			velocity = input * speed
