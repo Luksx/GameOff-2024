@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var sword_animator: AnimationPlayer = $SwordAnimator
 @onready var sword_cooldown: Timer = $SwordCooldown
 @onready var dash_cooldown: Timer = $DashCooldown
+@onready var dash_duration: Timer = $DashDuration
 @onready var hurtbox: HurtboxComponent = $HurtboxComponent
 
 
@@ -20,12 +21,15 @@ var can_dash := false
 func _ready() -> void:
 	dash_cooldown.start(2)
 
+
 func _process(_delta: float) -> void:
-	var input : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if input != Vector2(0,0):
-		velocity = input * speed 
-	else:
-		velocity = Vector2(0, 0)
+	if dash_duration.is_stopped():
+		print_debug("g")
+		var input : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		if input != Vector2.ZERO:
+			velocity = input * speed
+		else:
+			velocity = Vector2.ZERO
 	move_and_slide()
 
 
@@ -33,7 +37,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action("attack"):
 		_swing_sword()
 	if event.is_action("dash"):
-		dash()
+		_dash()
 
 func _swing_sword() -> void:
 	if on_cooldown:
@@ -51,14 +55,15 @@ func _on_sword_cooldown_timeout() -> void:
 	on_cooldown = false
 
 
-func dash():
+func _dash():
 	if can_dash:
 		dash_cooldown.start()
 		hurtbox.monitoring = false
 		can_dash = false
-		
+
 		var direction: Vector2 = get_direction()
 		velocity = direction * dash_speed
+		dash_duration.start()
 
 
 func _on_dash_cooldown_timeout() -> void:
@@ -72,6 +77,5 @@ func get_direction() -> Vector2:
 
 	if direction == Vector2.ZERO:
 		direction = Vector2.RIGHT
-	
+
 	return direction
-	
