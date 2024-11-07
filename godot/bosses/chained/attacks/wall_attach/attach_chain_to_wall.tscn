@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cny6pfpew408"]
+
+[ext_resource type="Script" path="res://bosses/chained/attacks/wall_attach/attach_chain_to_wall.gd" id="1_frnjq"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3nmfw"]
+b = Vector2(0, 0)
+
+[node name="AttachChainToWall" type="Node2D"]
+script = ExtResource("1_frnjq")
+
+[node name="Chain" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain"]
+shape = SubResource("SegmentShape2D_3nmfw")
+
+[node name="ChainLine" type="Line2D" parent="."]
+
+[node name="ChainDuration" type="Timer" parent="."]
